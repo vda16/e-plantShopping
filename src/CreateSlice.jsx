@@ -19,10 +19,11 @@ export const CreatSlice = createSlice({
     },
     removeItem: (state, action) => {
         const { name } = action.payload;
+        const itemToRemove = state.items.find(item => item.name === name);
         state.totalItems -= itemToRemove.quantity;  // Actualiza el número total de ítems
-        state.items = state.items.filter(item => item.name !== action.payload);
+        state.items = state.items.filter(item => item.name !== name);
     },
-    
+
     updateQuantity: (state, action) => {
         const { name, quantity } = action.payload;
         const itemToUpdate = state.items.find(item => item.name === name);
